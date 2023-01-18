@@ -6,14 +6,16 @@
                 <td> Idade </td>
                 <td> Cidade </td>
                 <td> Estado </td>
+                <td> Ação </td>
             </tr>
-            <div v-for="value in items" :key="value.id">
+            <div v-for="value in items" :key="value.key">
                 <tr>
-                    <td> {{ value.ID }} </td>
+                    <td> {{ value.id }} </td>
                     <td> {{ value.Nome }}</td>
                     <td> {{ value.Idade }}</td>
                     <td> {{ value.Local.Cidade }}</td>
                     <td> {{ value.Local.Estado }}</td>
+                    <td> <button type="button" @click="removeItems(value)"> X </button> </td>
     
                 </tr>
             </div>
@@ -26,7 +28,14 @@ export default {
     /* eslint-disable */
     props: {
         items: {
-            type: Object
+            type: Array
+        }
+    },
+    methods: {
+        removeItems(value){
+            this.$emit('testeRemove', value.id)
+            
+            
         }
     }
     

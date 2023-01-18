@@ -1,6 +1,8 @@
 <template>
     <div id="arrayObject">
-        <ListPerson :items="items"/>
+        <ListPerson :items="items" 
+        @testeRemove="alterarLista"
+        />
         <button type="button" @click="setItems"> Add New Item</button>
     </div>
     
@@ -16,9 +18,11 @@ export default {
     },
     data(){
         return {
+            randomNumber: 1,
+            contador: 0,
             items: [
             {
-                ID: 0,
+                id: 0,
                 Nome: "Krhis",
                 Idade: 0,
                 Local: {
@@ -27,7 +31,7 @@ export default {
                 }
             },
             {
-                ID: 1,
+                id: 1,
                 Nome: "Krhiws",
                 Idade: 1,
                 Local: {
@@ -40,10 +44,11 @@ export default {
     },
     methods: {
         setItems(){
+            this.randomNumber++
             const newItem = 
             {
-                ID: 2,
-                Nome: "Rafa Lindu",
+                id: this.randomNumber,
+                Nome: "Rafa Lindu" + this.randomNumber,
                 Idade: 2,
                 Local: {
                     Cidade: "Curitiba",
@@ -52,6 +57,12 @@ export default {
             }
 
             this.items.push(newItem)
+        },
+        alterarLista(newEvent){
+            console.log(newEvent)
+            
+            this.items.splice(newEvent, 1)
+
         }
     }
     
