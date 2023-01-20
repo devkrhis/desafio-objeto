@@ -60,8 +60,13 @@ export default {
         },
         alterarLista(newEvent){
             console.log(newEvent)
+            // this.items.splice(newEvent, 1)
+
+            let numbersIndex = this.items
+            let elementIndex = numbersIndex.findIndex(el => el.id == newEvent)
+            console.log("elemento", elementIndex)
+            this.items.splice(elementIndex, 1)
             
-            this.items.splice(newEvent, 1)
 
         }
     }
